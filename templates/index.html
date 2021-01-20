@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lang Simplification</title>
+    <script src="{{ url_for('static',   filename='c3/c3.min.js')}}"></script>
+    <script src="{{ url_for('static',   filename='c3/d3.js')}}"></script>
+    <link href="{{ url_for('static',   filename='c3/c3.css')}}" rel="stylesheet"/>
+</head>
+<body>
+<h2>Chart</h2>
+<div id="chart"></div>
+<script>
+
+ datos = {{datos['original']}};
+  var chart = c3.generate({
+    bindto: '#chart',
+    data: {
+      columns: [
+      datos
+      ]
+    }
+});
+
+
+</script>
+</body>
+</html>
