@@ -12,7 +12,11 @@
 <div id="chart"></div>
 <script>
 
- datos = {{datos['original']}};
+ datos = {{datos['y']}};
+ let new_datos = datos.unshift('Function')
+ console.log(datos)
+
+
   var chart = c3.generate({
     bindto: '#chart',
     data: {
@@ -24,5 +28,14 @@
 
 
 </script>
+
+ <form class="example" method="post" action=""
+         style="margin:auto;max-width:600px">
+            <input type="text" placeholder="Input formula" name="formula">
+            <button type="submit"><i class="fa fa-search">Apply</i>
+            </button>
+ </form>
+
+
 </body>
 </html>
