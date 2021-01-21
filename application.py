@@ -4,6 +4,20 @@ from flask import Flask, render_template, request
 application = Flask(__name__)
 
 
+def lang(input, tolerance, look_ahead):
+    output = [input[0]]
+    key_index = 0
+    while True:
+        segment = np.array(input[key_index: key_index + look_ahead + 1])
+        tolerance_segment = points_within_toler(segment, tolerance)
+        new_key = tolerance_segment[-1].tolist()
+        output.append(new_key)
+        key_index = input.index(new_key)
+        if key_index == len(input) - 1:
+            break
+    return list(output)
+
+
 def points_within_toler(points, tolerance):
     points = points.copy()
     start_point = points[0]
@@ -25,18 +39,6 @@ def points_within_toler(points, tolerance):
 
 @application.route('/', methods=['GET', 'POST'])
 def lang_simp():
-    def lang_simp(input_points, tolerance, look_ahead):
-        output_points = [input_points[0]]
-        key_index = 0
-        while True:
-            segment = np.array(input_points[key_index: key_index + look_ahead + 1])
-            points_from_segment_within_tolerance = points_within_toler(segment, tolerance)
-            new_key = points_from_segment_within_tolerance[-1].tolist()
-            output_points.append(new_key)
-            key_index = input_points.index(new_key)
-            if key_index == len(input_points) - 1:
-                break
-        return list(output_points)
     if request.method == 'POST':
         formula_str = request.form['formula']
         tolerance = int(request.form['tolerance'])
@@ -49,9 +51,9 @@ def lang_simp():
     t = np.arange(0.0, 5.0, 0.01)
     f1 = list(eval(formula_str))
 
-    ii = [list(ele) for ele in zip(t, f1)]
+    fx = [list(ele) for ele in zip(t, f1)]
 
-    f2 = lang_simp(ii, tolerance, look_ahead)
+    f2 = lang(fx, tolerance, look_ahead)
     f2 = [i[1] for i in f2]
     datos1 = {'y': f1}
     datos2 = {'y': f2}
