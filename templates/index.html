@@ -9,13 +9,14 @@
 </head>
 <body>
 <h2>Plot of function</h2>
+<h3>Numpy Formula: {{formula_str}}</h3>
+
 <div id="chart"></div>
 <script>
 
  datos = {{datos['y']}};
- let new_datos = datos.unshift('Function')
+ let new_datos = datos.unshift('Original Function')
  console.log(datos)
-
 
   var chart = c3.generate({
     bindto: '#chart',
@@ -32,11 +33,33 @@
  <form class="example" method="post" action=""
          style="margin:auto;max-width:600px">
             <input type="text" placeholder="Input formula" name="formula">
+            <input type="text" placeholder="tolerance" name="tolerance">
+            <input type="text" placeholder="look_ahead" name="look_ahead">
             <button type="submit"><i class="fa fa-search">Apply</i>
             </button>
  </form>
+<h2>Simplified plot of function</h2>
+<h3>Tolerance: {{tolerance}}</h3>
+<h3>look_ahead: {{look_ahead}}</h3>
 
-<h3>Formula: {{formula_str}}</h3>
+<div id="chart_simpli"></div>
+
+<script>
+
+ datos2 = {{datos2['y']}};
+ let new_datos2 = datos2.unshift('Simplified Function')
+ console.log(datos2)
+
+  var chart_simpli = c3.generate({
+    bindto: '#chart_simpli',
+    data: {
+      columns: [
+      datos2
+      ]
+    }
+});
+
+</script>
 
 </body>
 </html>
