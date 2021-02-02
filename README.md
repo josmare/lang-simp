@@ -14,7 +14,7 @@ which is equivalent to:
 
 <img src="https://render.githubusercontent.com/render/math?math=f(t)= e^{-t} cos(2 \pi*t)">
 
-using 500 units in _x_ axis (this value is fixed). Just because it looks pretty and shows in a nice way how the algorithm works.
+using 500 units in _x_ axis (this value is fixed). I choose this function just because it looks pretty and shows in a nice way how the algorithm works.
 
 
 Also uses default values of:
@@ -23,8 +23,7 @@ Also uses default values of:
 tolerance = 2
 look_ahead= 40
 ```
-Then
-You can play with these values, and a new valid formula in the fields given for this purpose.
+Then you can play with these values, and a new valid formula in the fields given for this purpose.
 An easy formula example can be:
 
 ```
